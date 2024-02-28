@@ -5,38 +5,39 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema debil
+-- Schema DOC_Diag1
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema debil
+-- Schema DOC_Diag1
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `debil` DEFAULT CHARACTER SET utf8 ;
-USE `debil` ;
+CREATE SCHEMA IF NOT EXISTS `DOC_Diag1` DEFAULT CHARACTER SET utf8 ;
+USE `DOC_Diag1` ;
 
 -- -----------------------------------------------------
--- Table `debil`.`EMPLEADO`
+-- Table `DOC_Diag1`.`PROGRAMA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `debil`.`EMPLEADO` (
-  `num_empleado` INT NOT NULL,
-  `nombre` VARCHAR(45) NULL,
-  `fecha_ingreso` VARCHAR(45) NULL,
-  `num_departamento` INT NOT NULL,
-  PRIMARY KEY (`num_empleado`),
-  INDEX `num_departamento_idx` (`num_departamento` ASC) VISIBLE)
+CREATE TABLE IF NOT EXISTS `DOC_Diag1`.`PROGRAMA` (
+  `cod_programa` INT NOT NULL,
+  `lenguaje` VARCHAR(45) NULL,
+  `sistema_operativo` VARCHAR(45) NULL,
+  `lineas_codigo` VARCHAR(45) NULL,
+  `fecha_terminacion` DATE NULL,
+  PRIMARY KEY (`cod_programa`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `debil`.`DEPARTAMENTO`
+-- Table `DOC_Diag1`.`PROGRAMADOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `debil`.`DEPARTAMENTO` (
-  `num_departamento` INT NOT NULL,
-  `nombre` VARCHAR(45) NOT NULL,
-  `presupuesto` DOUBLE NOT NULL,
-  `EMPLEADO_num_empleado` INT NOT NULL,
-  PRIMARY KEY (`num_departamento`, `EMPLEADO_num_empleado`),
-  INDEX `fk_DEPARTAMENTO_EMPLEADO_idx` (`EMPLEADO_num_empleado` ASC) VISIBLE)
+CREATE TABLE IF NOT EXISTS `DOC_Diag1`.`PROGRAMADOR` (
+  `nombre_programador` VARCHAR(45) NOT NULL,
+  `nombres` VARCHAR(45) NULL,
+  `apellido_p` VARCHAR(45) NULL,
+  `apellido_m` VARCHAR(45) NULL,
+  `PROGRAMA_cod_programa` INT NOT NULL,
+  PRIMARY KEY (`nombre_programador`),
+  INDEX `fk_PROGRAMADOR_PROGRAMA_idx` (`PROGRAMA_cod_programa` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
